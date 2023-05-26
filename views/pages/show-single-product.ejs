@@ -1,0 +1,23 @@
+<%- include('../partials/header'); %>
+
+
+<div class="card">
+    <div class="card-header">
+        <h4><%= product.name %></h4>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-6">
+                <strong>Price:</strong> <%= product.price %>
+            </div>
+            <div class="col-6">
+                <strong>Code:</strong> <%= product.ean %>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <strong>Created at:</strong> <%= product.created_at %>
+    </div>
+</div>
+
+<%- include('../partials/footer'); %>

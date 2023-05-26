@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript Example</title>
+    <link href="/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+    <div class="container">
+        <span class="navbar-brand">JavaScript</span>
+        <div class="navbar-nav text-uppercase">
+            <% menu.forEach(function(item){ %>
+                <a class="nav-item nav-link <%if (activeMenuItem === item.path) { %>active<% } %>" href="<%= item.path %>"><%= item.name %></a>
+            <% }) %>
+        </div>
+    </div>
+</nav>
+
+<div class="container p-5">

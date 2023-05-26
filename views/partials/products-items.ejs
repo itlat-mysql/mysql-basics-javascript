@@ -1,0 +1,84 @@
+<table class="table table-bordered table-striped mb-0" id="products-container">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EAN</th>
+            <th>PRICE</th>
+            <th>
+                <% if (locals.enableSearchLogic) { %>
+                    <a href="/search/" class="btn btn-sm btn-danger w-100">Reset</a>
+                <% } %>
+            </th>
+        </tr>
+        <% if (locals.enableSearchLogic) { %>
+        <tr>
+            <th>
+                <input
+                    class="form-control form-control-sm search-param"
+                    type="text"
+                    value="<% if ('id' in req.query && !Array.isArray(req.query.id)) { %><%= req.query.id %><% } %>"
+                    name="id"></th>
+            <th><input
+                    class="form-control form-control-sm search-param"
+                    type="text"
+                    value="<% if ('name' in req.query && !Array.isArray(req.query.name)) { %><%= req.query.name %><% } %>"
+                    name="name"></th>
+            <th><input
+                    class="form-control form-control-sm search-param"
+                    type="text"
+                    value="<% if ('ean' in req.query && !Array.isArray(req.query.ean)) { %><%= req.query.ean %><% } %>"
+                    name="ean"></th>
+            <th>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><small>from</small></span>
+                            <input
+                                class="form-control form-control-sm search-param"
+                                type="text"
+                                value="<% if ('price_gte' in req.query && !Array.isArray(req.query.price_gte)) { %><%= req.query.price_gte %><% } %>"
+                                name="price_gte">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><small>to</small></span>
+                            <input
+                                class="form-control form-control-sm search-param"
+                                type="text"
+                                value="<% if ('price_lte' in req.query && !Array.isArray(req.query.price_lte)) { %><%= req.query.price_lte %><% } %>"
+                                name="price_lte">
+                        </div>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <button
+                    class="btn btn-sm btn-primary w-100"
+                    id="search-products"
+                    data-js-search-route="/search/">Search</button>
+            </th>
+        </tr>
+        <% } %>
+    </thead>
+    <tbody>
+        <% if (products.length) { %>
+            <% products.forEach(function(product){ %>
+                <tr>
+                    <td class="align-middle"><%= product.id %></td>
+                    <td class="align-middle"><%= product.name %></td>
+                    <td class="align-middle"><%= product.ean %></td>
+                    <td class="align-middle"><%= product.price %></td>
+                    <td class="text-center"><a href="/product/<%= product.id %>">Show</a></td>
+                </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+                <td colspan="5">
+                    <div class="text-center text-uppercase">Products are not available.</div>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
